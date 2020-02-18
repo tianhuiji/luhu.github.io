@@ -12,13 +12,13 @@
         <div class="content">
             <!-- title-{会员登录、申请注册} -->
             <div class="height30"></div>
-            <div class="login-sign-title cf">
-                <a href="####" >会员登录</a>
+            <div class="login-sign-title cf" id="lgsn-title">
+                <a href="####" type="0" class="current">会员登录</a>
                 <span>|</span>
-                <a href="####" class="current">申请注册</a>
+                <a href="####" type="1" >申请注册</a>
             </div>
             <!-- 会员登录 -->
-            <div style="display: block;">
+            <div style="display: block;" type="0">
                 <div class="home-item cf">
                     <div class="icons"><i class="icon-name"></i></div>
                     <div class="inputbox">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <!-- 申请注册 -->
-            <div style="display: none;">
+            <div style="display: none;" type="1">
                 <div class="home-item cf">
                     <div class="icons"><i class="icon-default"></i></div>
                     <div class="inputbox">
@@ -84,5 +84,22 @@
         </div>
     </div>
 </div>
+<script src="../js/jquery1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $("#lgsn-title").on("click", "a", function() {
+            _this = $(this)
+            
+            _this.parent().parent().find("div[type]").each(function(){
+                $(this).css("display","none")
+            })
+            _this.parent().find("a").each(function(){
+                $(this).removeClass("current");
+            });
+            _this.addClass("current");
+            _this.parent().parent().find("div[type='"+ _this.attr("type") +"']").css("display","block");
+        })
+    });
+</script>
 </body>
 </html>
